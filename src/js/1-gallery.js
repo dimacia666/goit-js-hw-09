@@ -1,3 +1,6 @@
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
+
 const galleryItems = [
   {
     preview:
@@ -66,23 +69,21 @@ const galleryItems = [
 
 const gallery = document.querySelector('.gallery');
 
-function addImages(items){
+function addImages(items) {
   return items
     .map(
-    (items) => `<li class="gallery-item">
-	                <a class="gallery-link" href=${image.original}>
-		                <img 
-			                class="gallery-image" 
-			                src=${image.preview} 
-			                alt=${image.description} 
-			                />
-	                </a>
-                </li>`)};
+      (item) => `<li class="gallery-item">
+                  <a class="gallery-link" href="${item.original}">
+                    <img 
+                      class="gallery-image" 
+                      src="${item.preview}" 
+                      alt="${item.description}" 
+                    />
+                  </a>
+                </li>`
+    )
+    .join(''); 
+}
 
-gallery.insertAdjacentHTML("beforeend", addImages);
-
-// (function createMarkup() {
-//   const itemMarkup = galleryItems.map(templateFunction).join('');
-//   galleryRefs.insertAdjacentHTML('beforeend', itemMarkup);
-// })();
+gallery.insertAdjacentHTML("beforeend", addImages(galleryItems));
 
