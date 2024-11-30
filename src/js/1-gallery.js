@@ -85,5 +85,16 @@ function addImages(items) {
     .join(''); 
 }
 
-gallery.insertAdjacentHTML("beforeend", addImages(galleryItems));
+const addGallery = addImages(galleryItems);
 
+gallery.innerHTML = addImages;
+
+gallery.addEventListener("click", onImageClick);
+
+function onImageClick(evt) { 
+  blockStandartAction(evt);
+
+  if (evt.target.nodeName !== "IMG") { 
+    return;
+  }
+}
